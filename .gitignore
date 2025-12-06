@@ -1,0 +1,9 @@
+# ...existing code...
+.terraform/
+terraform.tfstate
+terraform.tfstate.backup
+terraform.tfvars
+.terraform.lock.hcl
+.ansible/
+scripts/dynamic-dns/cloudflare-keys.json
+# ...existing code...
