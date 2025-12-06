@@ -1,0 +1,5 @@
+{
+    "api_key": "Your Cloudflare API Token",
+    "zone_id": "Your DNS Zone ID",
+    "dns_record": "Your desired DNS record."
+}
