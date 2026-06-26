@@ -24,7 +24,7 @@ resource "aws_security_group" "wireguard-sg" {
     }   
     
     ingress {
-        cidr_blocks = ["0.0.0.0/0"]
+        cidr_blocks = [var.ssh_allowed_cidr]
         from_port   = "22"
         protocol    = "tcp"
         self        = "false"
