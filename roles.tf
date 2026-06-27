@@ -14,6 +14,9 @@ resource "aws_iam_role" "WireGuardLambdaRole" {
     })
 }
 
+data "aws_region" "current" {}
+data "aws_caller_identity" "current" {}
+
 resource "aws_iam_policy" "WireGuardLambdaPolicy" {
     name        = "WireGuardLambdaPolicy"
     description = "A policy for WireGuard Lambda functions"
@@ -27,14 +30,20 @@ resource "aws_iam_policy" "WireGuardLambdaPolicy" {
                     "logs:CreateLogStream",
                     "logs:PutLogEvents"
                 ],
-                Resource = "arn:aws:logs:*:*:*"
+                Resource = "arn:aws:logs:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/WireGuard*:*"
             },
             {
                 Effect = "Allow",
                 Action = [
-                    "ec2:Start*",
-                    "ec2:Stop*",
-                    "ec2:Describe*"
+                    "ec2:StartInstances",
+                    "ec2:StopInstances"
+                ],
+                Resource = aws_instance.wireguard-server.arn
+            },
+            {
+                Effect = "Allow",
+                Action = [
+                    "ec2:DescribeInstances"
                 ],
                 Resource = "*"
             }

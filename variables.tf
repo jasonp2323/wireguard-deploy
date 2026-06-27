@@ -5,6 +5,11 @@ variable "tags" {
   }
 }
 
+variable "ssh_allowed_cidr" {
+  description = "CIDR block allowed to SSH into the WireGuard server. Restrict to your IP (e.g. 1.2.3.4/32)."
+  type        = string
+}
+
 variable "wg-key" {
   description = "The public key for the WireGuard peer"
   type        = string

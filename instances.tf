@@ -42,7 +42,7 @@ resource "aws_instance" "wireguard-server" {
         http_endpoint               = "enabled"
         http_protocol_ipv6          = "disabled"
         http_put_response_hop_limit = "1"
-        http_tokens                 = "optional"
+        http_tokens                 = "required"
         instance_metadata_tags      = "disabled"
     }   
     monitoring                 = "false"
@@ -55,7 +55,7 @@ resource "aws_instance" "wireguard-server" {
     private_ip = "10.21.32.5"       
     root_block_device {
         delete_on_termination = "true"
-        encrypted             = "false"
+        encrypted             = "true"
         iops                  = "3000"
         throughput            = "125"
         volume_size           = "8"
